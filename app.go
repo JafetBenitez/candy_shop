@@ -21,7 +21,12 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func AllCandies(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Aún no implementado")
+	candies, err := dao.GetAll()
+	if err != nil {
+		respondWithError(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	respondWithJson(w, http.StatusOK, candies)
 }
 
 func FindCandy(w http.ResponseWriter, r *http.Request) {
