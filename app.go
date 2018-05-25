@@ -1,4 +1,4 @@
-package main
+package main // el paquete main es lo que identifica al proyecto como una aplicación y no como una librería
 
 import (
 	"encoding/json"
@@ -6,12 +6,10 @@ import (
 	"log"
 	"net/http"
 
-	. "github.com/jafetbntz/candy_shop/dao"
-	"gopkg.in/mgo.v2/bson"
-
-	. "github.com/jafetbntz/candy_shop/models"
-
 	"github.com/gorilla/mux"
+	. "github.com/jafetbntz/candy_shop/dao"
+	. "github.com/jafetbntz/candy_shop/models"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var dao = CandiesDAO{}
@@ -69,7 +67,8 @@ func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Write(response)
 }
 
-// Parse the configuration file 'config.toml', and establish a connection to DB
+// init() es una función que por defecto se ejcuta ates de acceder al main()
+// es utilizada para inicializar los componentes
 func init() {
 
 	dao.Server = "localhost"
@@ -77,6 +76,7 @@ func init() {
 	dao.Connect()
 }
 
+// main() es el punto de entrada de la aplicación como en otros lenguajes como Java.
 func main() {
 
 	r := mux.NewRouter()

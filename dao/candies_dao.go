@@ -10,7 +10,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-// CandiesDAO es
+// CandiesDAO tiene como objetivo centralizar
 type CandiesDAO struct {
 	Server   string
 	Database string
